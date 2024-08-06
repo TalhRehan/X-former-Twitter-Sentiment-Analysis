@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sentiment Analysis</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #2e2e2e;
+            color: #ecf0f1;
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+        }
+        .navbar {
+            background-color: #34495e;
+        }
+        .navbar-brand {
+            font-size: 1.5rem;
+            color: #ecf0f1 !important;
+        }
+        h1 {
+            color: #ecf0f1;
+            margin-bottom: 1.5rem;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            background-color: #3d3d3d;
+        }
+        .form-control {
+            background-color: #575757;
+            border: none;
+            color: #ecf0f1;
+        }
+        .form-control::placeholder {
+            color: #bdc3c7;
+        }
+        .btn-primary {
+            background-color: #1abc9c;
+            border: none;
+            font-size: 0.9rem;
+        }
+        .btn-primary:hover {
+            background-color: #16a085;
+        }
+        .results {
+            background-color: #3d3d3d;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+            padding: 1.5rem;
+        }
+        #sentiment {
+            min-height: 50px;
+            background-color: #575757;
+            border-radius: 10px;
+            padding: 1rem;
+            font-size: 1rem;
+            color: #ecf0f1;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Sentiment Analysis</a>
+    </nav>
+    <div class="container mt-5">
+        <h1 class="text-center">Sentiment Analysis</h1>
+        <div class="card p-4">
+            <div class="card-body">
+                <form id="sentiment-form" action="/analyze" method="post">
+                    <div class="form-group">
+                        <label for="inputText">Enter Text</label>
+                        <textarea class="form-control" id="inputText" name="inputText" rows="4" placeholder="Enter text for sentiment analysis"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary btn-block">Analyze Sentiment</button>
+                </form>
+            </div>
+        </div>
+        <div class="results mt-4">
+            <h3 class="text-center">Sentiment Result</h3>
+            <div id="sentiment" class="p-3 border rounded">
+                {% if prediction_data %}
+                <h5>{{prediction_data}}</h5>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</body>
+</html>
